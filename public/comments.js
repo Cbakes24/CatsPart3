@@ -68,7 +68,7 @@ const createCommentSubmitBtn = () => {
     submitBtn.value = "Submit";
 
     submitBtn.addEventListener('click', submitComment);
-
+    // localStorage.setItem(commentText)
     return submitBtn;
 };
 

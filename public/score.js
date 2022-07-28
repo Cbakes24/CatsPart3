@@ -62,14 +62,24 @@ const vote = e => {
     let newScore = score.innerText;
     if (e.target.id === "upvote") {
         newScore = parseInt(newScore) + 1;
+
     } else {
         newScore = parseInt(newScore) - 1;
+
     }
-    
+    localStorage.setItem('key', newScore)
     // update score
     updateScore(newScore);
 };
 
+// const loadScore = () => {
+//     if(localStorage.getItem('score')) {
+//        const loadScore = document.getElementsByClassName('score')
+//        loadScore.innerText = localStorage.getItem('score')
+//     } else {
+//         resetScore()
+//     }
+// }
 export const resetScore = () => {
     // reset score to 0
     updateScore(0);
@@ -78,4 +88,4 @@ export const resetScore = () => {
 const updateScore = (newScore) => {
     const score = document.querySelector('.score');
     score.innerText = newScore;
-};
+    }

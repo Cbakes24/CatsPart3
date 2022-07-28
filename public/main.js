@@ -18,8 +18,11 @@ export const createMainContent = () => {
     container.append(newKittenBtn);
     container.appendChild(img);
 
-    fetchImage();
+    loadCurrent();
+    // loadScore()
+    //
 };
+
 
 const fetchImage = async () => {
     // Fetch image from API and set img url
@@ -31,7 +34,7 @@ const fetchImage = async () => {
         const kittenImgUrl = kittenData[0].url;
         const kittenImg = document.querySelector("img");
         kittenImg.src = kittenImgUrl;
-
+        localStorage.setItem('image', kittenImgUrl)
         // After the image is finished loading, reset the score and comments
         kittenImg.addEventListener('load', () => {
             resetScore();
@@ -41,6 +44,16 @@ const fetchImage = async () => {
         console.log("Failed to fetch image", e);
     }
 };
+
+const loadCurrent = () => {
+    if(localStorage.getItem('image')) {
+       const reImage = document.querySelector('img')
+       reImage.src = localStorage.getItem('image')
+    } else {
+        fetchImage()
+    }
+}
+
 
 const createNewKittenBtn = () => {
     // Create "New Kitten" button
